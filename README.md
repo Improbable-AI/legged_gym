@@ -1,13 +1,8 @@
-# Isaac Gym Environments for Legged Robots #
-This repository provides the environment used to train ANYmal (and other robots) to walk on rough terrain using NVIDIA's Isaac Gym.
+# Isaac Gym Environments for Mini Cheetah #
+This repository provides the environment used to train the Mini Cheetah (and other robots) to walk on rough terrain using NVIDIA's Isaac Gym.
 It includes all components needed for sim-to-real transfer: actuator network, friction & mass randomization, noisy observations and random pushes during training.  
-**Maintainer**: Nikita Rudin  
-**Affiliation**: Robotic Systems Lab, ETH Zurich  
-**Contact**: rudinn@ethz.ch  
 
-### Useful Links ###
-Project website: https://leggedrobotics.github.io/legged_gym/
-Paper: https://arxiv.org/abs/2109.11978
+This environment is built on the legged gym environment by Nikita Rudin, Robotic Systems Lab, ETH Zurich. (Project website: https://leggedrobotics.github.io/legged_gym/ Paper: https://arxiv.org/abs/2109.11978)
 
 ### Installation ###
 1. Create a new python virtual env with python 3.6, 3.7 or 3.8 (3.8 recommended)
