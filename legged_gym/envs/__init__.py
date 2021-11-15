@@ -38,7 +38,9 @@ from .anymal_b.anymal_b_config import AnymalBRoughCfg, AnymalBRoughCfgPPO
 from .cassie.cassie import Cassie
 from .cassie.cassie_config import CassieRoughCfg, CassieRoughCfgPPO
 from .a1.a1_config import A1RoughCfg, A1RoughCfgPPO
-from .mini_cheetah.mini_cheetah_config import MiniCheetahCfg, MiniCheetahCfgPPO
+from .mini_cheetah.flat.mini_cheetah_flat_config import MiniCheetahFlatCfg, MiniCheetahFlatCfgPPO
+from .mini_cheetah.mixed_terrains.mini_cheetah_rough_config import MiniCheetahRoughCfg, MiniCheetahRoughCfgPPO
+from .mini_cheetah.tailed.mini_cheetah_tailed_config import MiniCheetahTailedCfg, MiniCheetahTailedCfgPPO
 
 
 import os
@@ -50,4 +52,6 @@ task_registry.register( "anymal_c_flat", Anymal, AnymalCFlatCfg(), AnymalCFlatCf
 task_registry.register( "anymal_b", Anymal, AnymalBRoughCfg(), AnymalBRoughCfgPPO() )
 task_registry.register( "a1", LeggedRobot, A1RoughCfg(), A1RoughCfgPPO() )
 task_registry.register( "cassie", Cassie, CassieRoughCfg(), CassieRoughCfgPPO() )
-task_registry.register( "mini_cheetah", LeggedRobot, MiniCheetahCfg(), MiniCheetahCfgPPO() )
+task_registry.register( "mini_cheetah_flat", LeggedRobot, MiniCheetahFlatCfg(), MiniCheetahFlatCfgPPO() )
+task_registry.register( "mini_cheetah_rough", LeggedRobot, MiniCheetahRoughCfg(), MiniCheetahRoughCfgPPO() )
+task_registry.register( "mini_cheetah_tailed", LeggedRobot, MiniCheetahTailedCfg(), MiniCheetahTailedCfgPPO() )

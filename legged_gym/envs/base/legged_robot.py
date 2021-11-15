@@ -72,8 +72,10 @@ class LeggedRobot(BaseTask):
 
         if not self.headless:
             self.set_camera(self.cfg.viewer.pos, self.cfg.viewer.lookat)
+        print("made sim")
         self._init_buffers()
         self._prepare_reward_function()
+        print("init done")
         self.init_done = True
 
     def step(self, actions):
@@ -485,9 +487,11 @@ class LeggedRobot(BaseTask):
         actor_root_state = self.gym.acquire_actor_root_state_tensor(self.sim)
         dof_state_tensor = self.gym.acquire_dof_state_tensor(self.sim)
         net_contact_forces = self.gym.acquire_net_contact_force_tensor(self.sim)
+        print("1")
         self.gym.refresh_dof_state_tensor(self.sim)
         self.gym.refresh_actor_root_state_tensor(self.sim)
         self.gym.refresh_net_contact_force_tensor(self.sim)
+        print("refreshed")
 
         # create some wrapper tensors for different slices
         self.root_states = gymtorch.wrap_tensor(actor_root_state)
@@ -697,6 +701,40 @@ class LeggedRobot(BaseTask):
         self.termination_contact_indices = torch.zeros(len(termination_contact_names), dtype=torch.long, device=self.device, requires_grad=False)
         for i in range(len(termination_contact_names)):
             self.termination_contact_indices[i] = self.gym.find_actor_rigid_body_handle(self.envs[0], self.actor_handles[0], termination_contact_names[i])
+
+
+
+        # set up soft bodies
+        asset_soft_body_count = self.gym.get_asset_soft_body_count(robot_asset)
+        asset_soft_materials = self.gym.get_asset_soft_materials(robot_asset)
+
+
+        input('Soft Material Properties:')
+        for i in range(asset_soft_body_count):
+            mat = asset_soft_materials[i]
+            print(f'(Body {i}) youngs: {mat.youngs} poissons: {mat.poissons} damping: {mat.damping}')
+
+
+        # soft_actors = []
+
+        # for (soft_actor, env) in zip(self.actor_handles, self.envs):
+
+        #     # set soft material within a range of default
+        #     actor_default_soft_materials = self.gym.get_actor_soft_materials(env, soft_actor)
+        #     actor_soft_materials = self.gym.get_actor_soft_materials(env, soft_actor)
+        #     for j in range(asset_soft_body_count):
+        #         youngs = actor_soft_materials[j].youngs
+        #         actor_soft_materials[j].youngs = np.random.uniform(youngs * 0.2, youngs * 2.4)
+
+        #         poissons = actor_soft_materials[j].poissons
+        #         actor_soft_materials[j].poissons = np.random.uniform(poissons * 0.8, poissons * 1.2)
+
+        #         damping = actor_soft_materials[j].damping
+        #         # damping is 0, instead we just randomize from scratch
+        #         actor_soft_materials[j].damping = np.random.uniform(0.0, 0.08)**2
+
+        #         self.gym.set_actor_soft_materials(env, soft_actor, actor_soft_materials)
+
 
     def _get_env_origins(self):
         """ Sets environment origins. On rough terrain the origins are defined by the terrain platforms.

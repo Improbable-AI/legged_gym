@@ -1,7 +1,7 @@
 
 from legged_gym.envs.base.legged_robot_config import LeggedRobotCfg, LeggedRobotCfgPPO
 
-class MiniCheetahCfg( LeggedRobotCfg ):
+class MiniCheetahFlatCfg( LeggedRobotCfg ):
     class init_state( LeggedRobotCfg.init_state ):
         pos = [0.0, 0.0, 0.32] # x,y,z [m]
         default_joint_angles = { # = target angles [rad] when action = 0.0
@@ -55,7 +55,7 @@ class MiniCheetahCfg( LeggedRobotCfg ):
         num_observations = 48
 
 
-class MiniCheetahCfgPPO( LeggedRobotCfgPPO ):
+class MiniCheetahFlatCfgPPO( LeggedRobotCfgPPO ):
     class algorithm( LeggedRobotCfgPPO.algorithm ):
         entropy_coef = 0.01
     class runner( LeggedRobotCfgPPO.runner ):

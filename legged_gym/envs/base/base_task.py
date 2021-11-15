@@ -134,6 +134,11 @@ class BaseTask():
             if self.device != 'cpu':
                 self.gym.fetch_results(self.sim, True)
 
+            #self.gym.clear_lines(self.viewer)
+            # for env in self.envs:
+            #     self.gym.draw_env_soft_contacts(self.viewer, env, gymapi.Vec3(0.7, 0.2, 0.15), 0.0005, True, True)
+
+
             # step graphics
             if self.enable_viewer_sync:
                 self.gym.step_graphics(self.sim)

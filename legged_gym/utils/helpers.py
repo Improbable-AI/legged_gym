@@ -83,7 +83,7 @@ def parse_sim_params(args, cfg):
 
     # set some values from args
     if args.physics_engine == gymapi.SIM_FLEX:
-        if args.device != "cpu":
+        if args.sim_device != "cpu":
             print("WARNING: Using Flex with GPU instead of PHYSX!")
     elif args.physics_engine == gymapi.SIM_PHYSX:
         sim_params.physx.use_gpu = args.use_gpu

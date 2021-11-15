@@ -198,6 +198,14 @@ class LeggedRobotCfg(BaseConfig):
             default_buffer_size_multiplier = 5
             contact_collection = 2 # 0: never, 1: last sub-step, 2: all sub-steps (default=2)
 
+        class flex:
+            solver_type = 5
+            num_outer_iterations = 4
+            num_inner_iterations = 20
+            relaxation = 0.8
+            warm_start = 0.75
+            shape_collision_margin = 0.1
+
 class LeggedRobotCfgPPO(BaseConfig):
     seed = 1
     runner_class_name = 'OnPolicyRunner'
