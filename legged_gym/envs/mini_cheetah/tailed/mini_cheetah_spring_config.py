@@ -1,7 +1,7 @@
 
 from legged_gym.envs.base.legged_robot_config import LeggedRobotCfg, LeggedRobotCfgPPO
 
-class MiniCheetahTailedCfg( LeggedRobotCfg ):
+class MiniCheetahSpringCfg( LeggedRobotCfg ):
     class init_state( LeggedRobotCfg.init_state ):
         pos = [0.0, 0.0, 0.32] # x,y,z [m]
         default_joint_angles = { # = target angles [rad] when action = 0.0
@@ -32,7 +32,7 @@ class MiniCheetahTailedCfg( LeggedRobotCfg ):
         decimation = 4
 
     class asset( LeggedRobotCfg.asset ):
-        file = '{LEGGED_GYM_ROOT_DIR}/resources/robots/mini_cheetah/urdf/tailed_mini_cheetah.urdf'
+        file = '{LEGGED_GYM_ROOT_DIR}/resources/robots/mini_cheetah/urdf/spring_mini_cheetah.urdf'
         foot_name = "calf"
         penalize_contacts_on = []
         terminate_after_contacts_on = ["base", "thigh"]
@@ -76,7 +76,7 @@ class MiniCheetahTailedCfg( LeggedRobotCfg ):
 
 
 
-class MiniCheetahTailedCfgPPO( LeggedRobotCfgPPO ):
+class MiniCheetahSpringCfgPPO( LeggedRobotCfgPPO ):
     class algorithm( LeggedRobotCfgPPO.algorithm ):
         entropy_coef = 0.01
     class runner( LeggedRobotCfgPPO.runner ):

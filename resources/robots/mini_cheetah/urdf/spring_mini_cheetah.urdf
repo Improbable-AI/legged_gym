@@ -474,25 +474,127 @@
         </fem>
     </link> -->
     
-<!--
-    <joint name = "attach" type = "fixed">
-        <origin xyz = "-0.40 0.0 0.0" rpy = "0 0 0"/>
-        <parent link = "trunk"/>
-        <child link = "soft"/>
+
+    <joint name = "attach" type = "prismatic">
+        <axis xyz="0 0 -1"/>
+        <origin xyz = "0.0 0.0 -0.21" rpy = "0 0 0"/>
+        <limit upper="0.1" lower="-0.1" />
+        <dynamics damping="1.0" />
+        <parent link = "FR_calf"/>
+        <child link = "FR_foot"/>
+         <safety_controller k_position="2.0" k_velocity="5.0" soft_lower_limit="-0.01" soft_upper_limit="0.088"/>
     </joint>
 
-    <link name="soft">
-        <fem>
-            <origin rpy="0.0 0.0 0" xyz="0 0 0"/>
-            <density value="1000"/>
-            <youngs value="1e5"/>
-            <poissons value="0.45"/>
-            <damping value="0.0"/>
-            <attachDistance value="1.0"/>
-            <tetmesh filename="icosphere.tet"/>
-            <scale value="0.01" />
-        </fem>
-    </link> 
- -->
+    <link name="FR_foot">
+        <material name="cheetah_material"/>
+        <inertial>
+            <mass value="0.0"/>
+            <inertia ixx="0.000025" ixy="0" ixz="0.0" iyy="0.000025" iyz="0" izz="0.000025"/>
+        </inertial>
+            <visual>
+                    <geometry>
+                      <sphere radius = "0.0175"/>
+                    </geometry>
+                    <origin rpy="0.0 3.141592 0.0" xyz="0.0 0.0 0.0"/>
+                </visual>
+            <collision>
+            <geometry>
+              <!--mesh filename="meshes/mini_lower_link.obj"/-->
+          <sphere radius = "0.0175"/>
+            </geometry>
+            <origin rpy="0.0 3.141592 0.0" xyz="0 0 0"/>
+        </collision>
+    </link>
+
+    <joint name = "attach2" type = "prismatic">
+        <axis xyz="0 0 -1"/>
+        <origin xyz = "0.0 0.0 -0.21" rpy = "0 0 0"/>
+        <limit upper="0.1" lower="-0.1" />
+        <dynamics damping="1.0" />
+        <parent link = "FL_calf"/>
+        <child link = "FL_foot"/>
+         <safety_controller k_position="2.0" k_velocity="5.0" soft_lower_limit="-0.01" soft_upper_limit="0.088"/>
+    </joint>
+
+    <link name="FL_foot">
+        <material name="cheetah_material"/>
+        <inertial>
+            <mass value="0.0"/>
+            <inertia ixx="0.000025" ixy="0" ixz="0.0" iyy="0.000025" iyz="0" izz="0.000025"/>
+        </inertial>
+            <visual>
+                    <geometry>
+                      <sphere radius = "0.0175"/>
+                    </geometry>
+                    <origin rpy="0.0 3.141592 0.0" xyz="0.0 0.0 0.0"/>
+                </visual>
+            <collision>
+            <geometry>
+          <sphere radius = "0.0175"/>
+            </geometry>
+            <origin rpy="0.0 3.141592 0.0" xyz="0 0 0"/>
+        </collision>
+    </link>
+
+    <joint name = "attach3" type = "prismatic">
+        <axis xyz="0 0 -1"/>
+        <origin xyz = "0.0 0.0 -0.21" rpy = "0 0 0"/>
+        <limit upper="0.1" lower="-0.1" />
+        <dynamics damping="1.0" />
+        <parent link = "RR_calf"/>
+        <child link = "RR_foot"/>
+         <safety_controller k_position="2.0" k_velocity="5.0" soft_lower_limit="-0.01" soft_upper_limit="0.088"/>
+    </joint>
+
+    <link name="RR_foot">
+        <material name="cheetah_material"/>
+        <inertial>
+            <mass value="0.0"/>
+            <inertia ixx="0.000025" ixy="0" ixz="0.0" iyy="0.000025" iyz="0" izz="0.000025"/>
+        </inertial>
+            <visual>
+                    <geometry>
+                      <sphere radius = "0.0175"/>
+                    </geometry>
+                    <origin rpy="0.0 3.141592 0.0" xyz="0.0 0.0 0.0"/>
+                </visual>
+            <collision>
+            <geometry>
+          <sphere radius = "0.0175"/>
+            </geometry>
+            <origin rpy="0.0 3.141592 0.0" xyz="0 0 0"/>
+        </collision>
+    </link>
+
+    <joint name = "attach4" type = "prismatic">
+        <axis xyz="0 0 -1"/>
+        <origin xyz = "0.0 0.0 -0.21" rpy = "0 0 0"/>
+        <limit upper="0.1" lower="-0.1" />
+        <dynamics damping="1.0" />
+        <parent link = "RL_calf"/>
+        <child link = "RL_foot"/>
+         <safety_controller k_position="2.0" k_velocity="5.0" soft_lower_limit="-0.01" soft_upper_limit="0.088"/>
+    </joint>
+
+    <link name="RL_foot">
+        <material name="cheetah_material"/>
+        <inertial>
+            <mass value="0.0"/>
+            <inertia ixx="0.000025" ixy="0" ixz="0.0" iyy="0.000025" iyz="0" izz="0.000025"/>
+        </inertial>
+            <visual>
+                    <geometry>
+                      <sphere radius = "0.0175"/>
+                    </geometry>
+                    <origin rpy="0.0 3.141592 0.0" xyz="0.0 0.0 0.0"/>
+                </visual>
+            <collision>
+            <geometry>
+          <sphere radius = "0.0175"/>
+            </geometry>
+            <origin rpy="0.0 3.141592 0.0" xyz="0 0 0"/>
+        </collision>
+    </link>
+ 
 
 </robot>
