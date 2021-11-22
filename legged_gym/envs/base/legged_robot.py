@@ -217,6 +217,15 @@ class LeggedRobot(BaseTask):
                                     self.dof_vel * self.obs_scales.dof_vel,
                                     self.actions
                                     ),dim=-1)
+
+        # input(f"base lin vel: {self.base_lin_vel} \n \
+        #         base ang vel: {self.base_ang_vel} \n \
+        #         projected gravity: {self.projected_gravity} \n \
+        #         commands: {self.commands[:, :3]} \n \
+        #         dof pos: {self.dof_pos} \n \
+        #         dof vel: {self.dof_vel} \n \
+        #         actions: {self.actions} \n \
+        #         ")
         # add perceptive inputs if not blind
         if self.cfg.terrain.measure_heights:
             heights = torch.clip(self.root_states[:, 2].unsqueeze(1) - 0.5 - self.measured_heights, -1, 1.) * self.obs_scales.height_measurements
@@ -370,6 +379,12 @@ class LeggedRobot(BaseTask):
             torques = self.p_gains*(actions_scaled - self.dof_vel) - self.d_gains*(self.dof_vel - self.last_dof_vel)/self.sim_params.dt
         elif control_type=="T":
             torques = actions_scaled
+        elif control_type=="P_compliantfeet":
+            torques = self.p_gains*(actions_scaled + self.default_dof_pos - self.dof_pos) - self.d_gains*self.dof_vel
+            spring_idxs = [3, 7, 11, 15]
+            torques[:, spring_idxs] = 1 + 0 * (self.p_gains[spring_idxs]*(self.default_dof_pos[:, spring_idxs] - self.dof_pos[:, spring_idxs]) - self.d_gains[spring_idxs]*self.dof_vel[:, spring_idxs])
+            #print(self.dof_pos[:, spring_idxs], torques[:, spring_idxs])
+            print(self.dof_pos, torques)
         else:
             raise NameError(f"Unknown controller type: {control_type}")
         return torch.clip(torques, -self.torque_limits, self.torque_limits)

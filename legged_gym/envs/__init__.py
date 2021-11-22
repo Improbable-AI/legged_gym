@@ -39,6 +39,8 @@ from .cassie.cassie import Cassie
 from .cassie.cassie_config import CassieRoughCfg, CassieRoughCfgPPO
 from .a1.a1_config import A1RoughCfg, A1RoughCfgPPO
 from .mini_cheetah.mini_cheetah_config import MiniCheetahCfg, MiniCheetahCfgPPO
+from .mini_cheetah.tailed.mini_cheetah_spring_config import MiniCheetahSpringCfg, MiniCheetahSpringCfgPPO
+from .mini_cheetah.gap_crossing.mini_cheetah_gap_config import MiniCheetahGapCfg, MiniCheetahGapCfgPPO
 
 
 import os
@@ -51,3 +53,5 @@ task_registry.register( "anymal_b", Anymal, AnymalBRoughCfg(), AnymalBRoughCfgPP
 task_registry.register( "a1", LeggedRobot, A1RoughCfg(), A1RoughCfgPPO() )
 task_registry.register( "cassie", Cassie, CassieRoughCfg(), CassieRoughCfgPPO() )
 task_registry.register( "mini_cheetah", LeggedRobot, MiniCheetahCfg(), MiniCheetahCfgPPO() )
+task_registry.register( "mini_cheetah_spring", LeggedRobot, MiniCheetahSpringCfg(), MiniCheetahSpringCfgPPO() )
+task_registry.register( "mini_cheetah_gap", LeggedRobot, MiniCheetahGapCfg(), MiniCheetahGapCfgPPO() )
