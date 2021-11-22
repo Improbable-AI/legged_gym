@@ -58,6 +58,8 @@ class MiniCheetahGapCfg( LeggedRobotCfg ):
         mesh_type = 'trimesh'
         measure_heights = True
         terrain_proportions = [0, 0, 0, 0, 0, 0, 1.0]
+        difficulty_scale = 0.6
+        horizontal_scale = 0.1
 
     class env( LeggedRobotCfg.env ):
         num_observations = 235
